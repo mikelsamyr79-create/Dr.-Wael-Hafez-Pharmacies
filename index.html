@@ -56,13 +56,11 @@ async function login(){
   }
 
   try{
-    // جلب كل المستخدمين
     const snapshot = await get(ref(db,'users'));
     if(snapshot.exists()){
       const users = snapshot.val();
       let found = false;
 
-      // البحث داخل جميع المستخدمين
       for(let key in users){
         const user = users[key];
         if(user.code === code && String(user.password) === pass){
@@ -73,11 +71,9 @@ async function login(){
           successMsg.innerText = '✅ تم تسجيل الدخول بنجاح! جاري التوجيه...';
           successMsg.style.display = 'block';
 
-          // بعد 1.5 ثانية التوجيه إلى Google Sites
           setTimeout(()=>{
-            window.location.href = "https://sites.google.com/view/dr-wael-hafez-pharmacies/%D8%A7%D9%84%D9%82%D9%88%D8%A7%D8%A6%D9%85";
-          },1500);
-
+            window.location.href = "dashboard.html"; // التوجيه للداشبورد الداخلي
+          },1200);
           break;
         }
       }
