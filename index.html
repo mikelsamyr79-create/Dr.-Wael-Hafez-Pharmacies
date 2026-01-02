@@ -30,7 +30,7 @@ button:hover{background:#e6c200}
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
 import { getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-database.js";
 
-// تكوين Firebase
+// Firebase config
 const firebaseConfig = {
   databaseURL: "https://hr-wael-hafez-default-rtdb.firebaseio.com/"
 };
@@ -59,10 +59,10 @@ async function login(){
         const user = users[key];
         if(user.code === code && user.password === pass){
           found = true;
-          // نجاح الدخول
-          // يمكن تخزين role إذا أردت لاحقًا
           localStorage.setItem('userRole', user.role);
-          window.location.href = "https://sites.google.com/view/dr-wael-hafez-pharmacies/%D8%A7%D9%84%D9%82%D9%88%D8%A7%D8%A6%D9%85";
+          localStorage.setItem('userCode', user.code);
+          // التوجيه داخل نفس الموقع
+          window.location.href = "dashboard.html";
           break;
         }
       }
